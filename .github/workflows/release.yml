@@ -35,11 +35,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           build-args: |
-            LD_FLAGS=-s -w -X github.com/K0rdent/kcm/internal/build.Version=${{ env.VERSION }} -X github.com/K0rdent/kcm/internal/telemetry.segmentToken=${{ secrets.SEGMENT_TOKEN }}
+            LD_FLAGS=-s -w -X github.com/cdunkelb/kcm/internal/build.Version=${{ env.VERSION }} -X github.com/cdunkelb/kcm/internal/telemetry.segmentToken=${{ secrets.SEGMENT_TOKEN }}
           context: .
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/k0rdent/kcm/controller:${{ env.VERSION }}
+            ghcr.io/cdunkelb/kcm/controller:${{ env.VERSION }}
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -47,7 +47,7 @@ jobs:
       - name: Prepare KCM chart
         run: VERSION="${{ env.VERSION }}" make kcm-chart-release
       - name: Push charts to GHCR
-        run: REGISTRY_REPO="oci://ghcr.io/k0rdent/kcm/charts" make helm-push
+        run: REGISTRY_REPO="oci://ghcr.io/cdunkelb/kcm/charts" make helm-push
 
       - name: Prepare manifests
         run: make kcm-dist-release
