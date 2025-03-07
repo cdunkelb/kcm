@@ -308,6 +308,7 @@ dev-undeploy: ## Undeploy controller from the K8s cluster specified in ~/.kube/c
 
 .PHONY: helm-push
 helm-push: helm-package
+	@set -x; \
 	if [ ! $(REGISTRY_IS_OCI) ]; then \
 	    repo_flag="--repo"; \
 	fi; \
