@@ -37,7 +37,7 @@ jobs:
           build-args: |
             LD_FLAGS=-s -w -X github.com/cdunkelb/kcm/internal/build.Version=${{ env.VERSION }} -X github.com/cdunkelb/kcm/internal/telemetry.segmentToken=${{ secrets.SEGMENT_TOKEN }}
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: |
             ghcr.io/cdunkelb/kcm/controller:${{ env.VERSION }}
           push: true
